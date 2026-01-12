@@ -1,6 +1,10 @@
 # TinyLlama RLHF Training Project
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kaz264/tinyllama-rlhf-training/blob/master/tinyllama_rlhf_colab.ipynb)
+
 PPO(Proximal Policy Optimization)를 사용한 TinyLlama 모델 강화학습 파인튜닝 프로젝트입니다.
+
+**🚀 빠른 시작**: 위의 "Open in Colab" 배지를 클릭하여 Google Colab에서 바로 실행해보세요!
 
 ## 프로젝트 소개
 
