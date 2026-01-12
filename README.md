@@ -95,7 +95,7 @@ lora_dropout=0.05  # 드롭아웃 비율
 ### PPO 설정
 
 ```python
-learning_rate=2e-5              # 학습률
+learning_rate=3e-5              # 학습률 (개선됨: 2e-5 → 3e-5)
 batch_size=10                   # 배치 크기
 mini_batch_size=2               # 미니 배치 크기
 gradient_accumulation_steps=5   # 그래디언트 누적 스텝
@@ -105,15 +105,17 @@ init_kl_coef=0.2               # KL 페널티 계수
 
 ### 학습 파라미터
 
-- **훈련 에포크**: 100
+- **훈련 에포크**: 150 (개선됨: 100 → 150)
 - **배치 크기**: 10
-- **입력 쿼리**: "I feel so", "This makes me", "I am really"
+- **입력 쿼리**: 6가지 다양한 문장 패턴
+  - "I feel so", "This makes me", "I am really", "Today I am", "Life is", "I'm feeling"
 - **최대 생성 토큰**: 10
 
 ## 보상 함수
 
 모델이 다음 단어 중 하나를 생성하면 +1.0의 보상을 받습니다:
-- happy, glad, good, great, smile, joy, love
+- **기본 단어**: happy, glad, good, great, smile, joy, love
+- **확장 단어**: wonderful, amazing, excited, pleased, delighted, cheerful, grateful, blessed, fantastic
 
 이외의 경우 -1.0의 페널티를 받습니다.
 
@@ -122,12 +124,12 @@ init_kl_coef=0.2               # KL 페널티 계수
 ### 학습 중
 
 ```
-🔥 [Epoch 1/100] Step 1 학습 완료
+🔥 [Epoch 1/150] Step 1 학습 완료
 🎉 [Epoch 1] 발견! 'happy and excited!'
 
-📊 [진행 상황] Epoch 10/100
-   긍정 생성 횟수: 15
-   성공률: 50.0%
+📊 [진행 상황] Epoch 10/150
+   긍정 생성 횟수: 25
+   성공률: 55.0%
 ```
 
 ### 학습 완료 후
@@ -188,9 +190,10 @@ test_sample_dl/
 
 ### 모델이 긍정 단어를 생성하지 않음
 
-- 학습 에포크를 늘리세요: `TRAINING_EPOCHS = 200`
-- 학습률을 조정하세요: `learning_rate=3e-5`
+- 학습 에포크를 더 늘리세요: `TRAINING_EPOCHS = 200`
+- 학습률을 더 높이세요: `learning_rate=4e-5`
 - PPO 에포크를 늘리세요: `ppo_epochs=6`
+- 보상 단어를 더 추가하세요
 
 ## 참고 자료
 
