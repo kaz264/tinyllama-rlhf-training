@@ -28,7 +28,7 @@ LORA_CONFIG = LoraConfig(
 
 # PPO 설정 (학습률 UP, 복습 UP)
 PPO_CONFIG = PPOConfig(
-    learning_rate=2e-5,  # 과감하게 학습
+    learning_rate=3e-5,  # 개선된 학습률 (2e-5 -> 3e-5)
     batch_size=10,
     mini_batch_size=2,
     gradient_accumulation_steps=5,
@@ -38,10 +38,23 @@ PPO_CONFIG = PPOConfig(
 )
 
 # 학습 설정
-TRAINING_EPOCHS = 100
+TRAINING_EPOCHS = 150  # 개선된 에포크 수 (100 -> 150)
 TARGET_BATCH_SIZE = 10
-QUERIES = ["I feel so", "This makes me", "I am really"]
-TARGET_WORDS = ["happy", "glad", "good", "great", "smile", "joy", "love"]
+# 확장된 입력 쿼리 (더 다양한 문장 패턴)
+QUERIES = [
+    "I feel so",
+    "This makes me",
+    "I am really",
+    "Today I am",
+    "Life is",
+    "I'm feeling"
+]
+# 확장된 긍정 단어 목록 (더 다양한 감정 표현)
+TARGET_WORDS = [
+    "happy", "glad", "good", "great", "smile", "joy", "love",
+    "wonderful", "amazing", "excited", "pleased", "delighted",
+    "cheerful", "grateful", "blessed", "fantastic"
+]
 
 # ==========================================
 # 2. 디바이스 설정
